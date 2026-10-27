@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feelings Wall – say it out loud</title>
+  <meta name="description" content="An anonymous wall where people share how they feel and send each other a little support." />
+  <!--OG-->
+  <meta name="ej-post" content="<!--POST-->" />
+  <link rel="stylesheet" href="feeling.css" />
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="top">
+    <a class="brand" href="/">💌 <span>Feelings Wall</span></a>
+    <button id="themeBtn" class="ghost icon" title="Toggle light / dark" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Say it out loud.<br /><span>Someone out there gets it.</span></h1>
+      <p>Share how you feel – anonymously. Read others, send a hug, remind someone they're not alone.</p>
+      <div class="pulse" id="pulse" aria-live="polite">
+        <div class="pulse-title" id="pulseTitle">Reading the room…</div>
+        <div class="pulse-bar" id="pulseBar"></div>
+        <div class="pulse-sub" id="pulseSub"></div>
+      </div>
+    </section>
+
+    <section class="composer card" id="composer">
+      <div class="label">How are you feeling right now?</div>
+      <div class="moods" id="moodPicker" role="radiogroup" aria-label="Mood"></div>
+
+      <div class="row between">
+        <label class="label" for="emotionInput">What's on your mind?</label>
+        <button class="link" id="promptBtn" type="button">🎲 Give me a prompt</button>
+      </div>
+      <textarea id="emotionInput" maxlength="1000" placeholder="Write freely. No one will know it's you."></textarea>
+      <div class="row between small muted">
+        <span id="draftNote"></span><span id="charCount">0/1000</span>
+      </div>
+
+      <div id="crisis" class="crisis" hidden>
+        💛 You matter. If you're thinking about hurting yourself, please reach out to someone now –
+        <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a> lists free, confidential support lines in every country.
+        You can still post here if it helps.
+      </div>
+
+      <div class="row wrap gap">
+        <input id="nickInput" class="nick" maxlength="24" placeholder="Nickname (optional)" autocomplete="off" />
+        <div class="seg" id="visSeg" role="radiogroup" aria-label="Visibility">
+          <button type="button" data-v="public" class="on">🌍 Share on the wall</button>
+          <button type="button" data-v="private">🔒 Keep private</button>
+        </div>
+        <button id="submitBtn" class="primary" type="button">Let it out</button>
+      </div>
+    </section>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab on" data-tab="wall" role="tab">🌍 The Wall</button>
+      <button class="tab" data-tab="journal" role="tab">📓 My Journal</button>
+    </nav>
+
+    <section id="wallView">
+      <div class="filters">
+        <div class="chips" id="filterChips"></div>
+        <select id="sortSel" aria-label="Sort">
+          <option value="new">Newest</option>
+          <option value="top">Most supported</option>
+        </select>
+      </div>
+      <button id="newPill" class="pill" hidden>↑ New feelings – tap to see</button>
+      <div id="wallList" class="list"></div>
+      <div class="center"><button id="moreBtn" class="ghost" hidden>Load more</button></div>
+    </section>
+
+    <section id="journalView" hidden>
+      <div class="stats" id="journalStats"></div>
+      <div id="journalList" class="list"></div>
+      <div class="center row gap wrap">
+        <button id="exportBtn" class="ghost">⬇️ Download my journal</button>
+        <button id="clearBtn" class="ghost danger">🗑 Clear journal from this device</button>
+      </div>
+    </section>
+
+    <footer>
+      Be kind. Posts with links are blocked, and anything reported 3 times is hidden. Not a substitute for professional help.
+    </footer>
+  </main>
+
+  <div class="modal" id="shareModal" hidden>
+    <div class="sheet card">
+      <button class="x ghost icon" id="shareClose" aria-label="Close">✕</button>
+      <h2 id="shareHeading">Share this feeling</h2>
+      <canvas id="shareCanvas" width="1080" height="1080"></canvas>
+      <div class="row wrap gap center">
+        <button class="primary" id="shNative">📤 Share</button>
+        <a class="btn" id="shWhats" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <button class="ghost" id="shDownload">🖼 Save image</button>
+        <button class="ghost" id="shCopy">🔗 Copy link</button>
+      </div>
+      <p class="small muted center" id="shNote"></p>
+    </div>
+  </div>
+
+  <div id="toasts" aria-live="polite"></div>
+  <script src="feeling.js"></script>
+</body>
+</html>

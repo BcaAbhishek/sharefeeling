@@ -1,0 +1,21 @@
+{
+  "name": "feelings-wall",
+  "version": "2.0.0",
+  "description": "An anonymous, supportive wall where people share how they feel.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "i": "^0.3.7"
+  },
+  "optionalDependencies": {
+    "twilio": "^5.3.0"
+  }
+}
